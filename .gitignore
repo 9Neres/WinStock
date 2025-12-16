@@ -1,0 +1,49 @@
+# Gradle files
+*.iml
+.gradle
+.gradle/
+/local.properties
+build/
+/build
+/captures
+captures/
+
+# Android Studio / IntelliJ IDEA
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# External native build
+.externalNativeBuild
+.externalNativeBuild/
+.cxx
+.cxx/
+
+# OS Files
+.DS_Store
+*.log
+
+# APK/AAB files
+*.aab
+*.apk
+output-metadata.json
+
+# Keystore files
+*.jks
+*.keystore
+
+# Env File
+.env
+
+# Google Services
+google-services.json
+
+# Android Profiling
+*.hprof
