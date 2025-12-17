@@ -109,7 +109,7 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scroll)
-            .background(Color(0xFFF9FAFB))
+            .background(MaterialTheme.colorScheme.background)
             .padding(bottom = 16.dp)
     ) {
 
@@ -117,18 +117,18 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFF2C6BFF))
+                .background(Color(0xFF483280))
                 .padding(24.dp)
         ) {
             Text(
                 "Coleta de Inventário",
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onPrimary,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
                 "Seja Bem-Vindo",
-                color = Color.White,
+                color = MaterialTheme.colorScheme.onPrimary,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(top = 4.dp)
             )
@@ -141,8 +141,8 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                     .fillMaxWidth()
                     .padding(top = 12.dp),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White
+                    focusedContainerColor = MaterialTheme.colorScheme.surface,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface
                 )
             )
 
@@ -151,7 +151,7 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp),
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.surface,
                     shape = RoundedCornerShape(12.dp),
                     tonalElevation = 2.dp
                 ) {
@@ -164,14 +164,14 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                         if (resultadosBusca.isEmpty()) {
                             Text(
                                 text = "Nota não encontrada nos scanneados.",
-                                color = Color(0xFFE11D48),
+                                color = MaterialTheme.colorScheme.error,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
                         } else {
                             Text(
                                 text = "Notas encontradas:",
-                                color = Color(0xFF111827),
+                                color = MaterialTheme.colorScheme.onSurface,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold
                             )
@@ -179,7 +179,7 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                             resultadosBusca.forEach { item ->
                                 Text(
                                     text = item.codBarId,
-                                    color = Color(0xFF16A34A),
+                                    color = MaterialTheme.colorScheme.secondary,
                                     fontSize = 14.sp,
                                     modifier = Modifier.padding(vertical = 4.dp)
                                 )
@@ -204,8 +204,8 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                     placeholder = { Text("Scan ou digite") },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedContainerColor = Color.White,
-                        unfocusedContainerColor = Color.White
+                        focusedContainerColor = MaterialTheme.colorScheme.surface,
+                        unfocusedContainerColor = MaterialTheme.colorScheme.surface
                     )
                 )
 
@@ -223,10 +223,10 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                         }
                     },
                     enabled = codigoCapturado.isNotBlank(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2563EB)),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier.height(48.dp)
                 ) {
-                    Text("Registrar", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text("Registrar", color = MaterialTheme.colorScheme.onPrimary, fontWeight = FontWeight.Bold)
                 }
             }
 
@@ -239,12 +239,12 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                     mensagem = null
                     mostrarDialogoInfo = true
                 },
-                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color(0xFFBFD6FF)),
+                colors = ButtonDefaults.outlinedButtonColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(top = 12.dp)
             ) {
-                Text("Informações do Banco de Dados", color = Color(0xFF111827), fontWeight = FontWeight.Bold)
+                Text("Informações do Banco de Dados", color = MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.Bold)
             }
         }
 
@@ -254,7 +254,7 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
@@ -267,12 +267,12 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                         text = "Cadastrar Produto",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF111827)
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     TextButton(onClick = { mostrarFormularioInventario = !mostrarFormularioInventario }) {
                         Text(
                             text = if (mostrarFormularioInventario) "Ocultar" else "Adicionar",
-                            color = Color(0xFF2563EB),
+                            color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Bold
                         )
                     }
@@ -408,7 +408,7 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                             cadastroStatus = "Pendente"
                         },
                         colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = Color(0xFF2563EB)
+                            contentColor = MaterialTheme.colorScheme.primary
                         )
                     ) {
                         Text("Registrar localmente")
@@ -418,7 +418,7 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = msg,
-                            color = if (msg.startsWith("✅")) Color(0xFF16A34A) else Color(0xFFE11D48),
+                            color = if (msg.startsWith("✅")) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.error,
                             fontSize = 14.sp
                         )
                     }
@@ -463,9 +463,9 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                             }
                         },
                         modifier = Modifier.align(Alignment.End),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF16A34A))
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary)
                     ) {
-                        Text("Finalizar e Enviar ao Banco de Dados", color = Color.White, fontWeight = FontWeight.Bold)
+                        Text("Finalizar e Enviar ao Banco de Dados", color = MaterialTheme.colorScheme.onSecondary, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -484,8 +484,8 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
             val concluidosTexto = resumoStatus?.concluidos?.toString() ?: "-"
             val pendentesTexto = resumoStatus?.pendentes?.toString() ?: "-"
 
-            StatusCard(concluidosTexto, "Concluídos", Color(0xFFE7F8ED), Modifier.weight(1f))
-            StatusCard(pendentesTexto, "Pendentes", Color(0xFFFEE2E2), Modifier.weight(1f))
+            StatusCard(concluidosTexto, "Concluídos", MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f), Modifier.weight(1f))
+            StatusCard(pendentesTexto, "Pendentes", MaterialTheme.colorScheme.error.copy(alpha = 0.1f), Modifier.weight(1f))
         }
 
         // 🟢 Botões principais
@@ -493,14 +493,14 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
 
             Button(
                 onClick = { navController.navigate("scanner") },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF16A34A)),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 12.dp)
             ) {
                 Text(
                     "Scannear com câmera",
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onSecondary,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -590,13 +590,13 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                 text = "Scanneados",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF7E7E7E)
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )
 
             if (scanneados.isEmpty()) {
                 Text(
                     text = "Nenhum código escaneado até o momento.",
-                    color = Color(0xFF9CA3AF),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                     fontSize = 14.sp,
                     modifier = Modifier.padding(vertical = 12.dp)
                 )
@@ -627,7 +627,7 @@ fun ColetaInventarioScreen(navController: NavHostController, forceReload: Boolea
                 else -> {
                     Text(
                         text = mensagem!!,
-                        color = if (mensagem!!.startsWith("✔")) Color(0xFF16A34A) else Color(0xFFE11D48),
+                        color = if (mensagem!!.startsWith("✔")) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.error,
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 16.dp)
                     )
@@ -647,8 +647,8 @@ fun StatusCard(count: String, label: String, bgColor: Color, modifier: Modifier 
             .padding(12.dp)
             .height(70.dp)
     ) {
-        Text(text = count, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color(0xFF111827))
-        Text(text = label, fontSize = 12.sp, color = Color(0xFF111827))
+        Text(text = count, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+        Text(text = label, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface)
     }
 }
 
@@ -657,8 +657,8 @@ fun ScanneadoCard(item: ScanneadoItem) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White, RoundedCornerShape(12.dp)),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(12.dp)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -671,7 +671,7 @@ fun ScanneadoCard(item: ScanneadoItem) {
                     text = item.codBarId,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF111827)
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 item.status?.takeIf { it.isNotBlank() }?.let { status ->
                     StatusBadge(status)
@@ -699,12 +699,12 @@ private fun InfoLinha(rotulo: String, valor: String?) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(rotulo, fontSize = 12.sp, color = Color(0xFF6B7280))
+        Text(rotulo, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
         Text(
             text = valor?.takeIf { it.isNotBlank() } ?: "-",
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
-            color = Color(0xFF111827)
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }
@@ -712,9 +712,9 @@ private fun InfoLinha(rotulo: String, valor: String?) {
 @Composable
 private fun StatusBadge(status: String) {
     val cor = when (status.lowercase()) {
-        "concluído", "concluido" -> Color(0xFF0CFA25)
-        "pendente", "pendentes" -> Color(0xFFDC2626)
-        else -> Color(0xFF6B7280)
+        "concluído", "concluido" -> MaterialTheme.colorScheme.secondary
+        "pendente", "pendentes" -> MaterialTheme.colorScheme.error
+        else -> MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
     }
     Surface(
         color = cor.copy(alpha = 0.12f),
