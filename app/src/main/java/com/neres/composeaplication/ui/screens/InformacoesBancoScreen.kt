@@ -380,7 +380,7 @@ fun InformacoesBancoScreen(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(Color(0xFFF9FAFB))
+                .background(MaterialTheme.colorScheme.background)
                 .padding(16.dp)
         ) {
             when {
@@ -398,7 +398,7 @@ fun InformacoesBancoScreen(
                             Text(
                                 text = "📦 Sem conexão Wi-Fi",
                                 fontSize = 12.sp,
-                                color = Color(0xFF92400E)
+                                color = MaterialTheme.colorScheme.error
                             )
                         }
                     }
@@ -407,7 +407,7 @@ fun InformacoesBancoScreen(
                 mensagemErro != null -> {
                     Text(
                         text = mensagemErro ?: "",
-                        color = Color(0xFFE11D48),
+                        color = MaterialTheme.colorScheme.error,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
@@ -428,7 +428,7 @@ fun InformacoesBancoScreen(
                         }
                         
                         Surface(
-                            color = Color(0xFFFEF3C7),
+                            color = MaterialTheme.colorScheme.errorContainer,
                             shape = RoundedCornerShape(8.dp),
                             modifier = Modifier.fillMaxWidth()
                         ) {
@@ -443,17 +443,17 @@ fun InformacoesBancoScreen(
                                         text = "Modo Offline",
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 13.sp,
-                                        color = Color(0xFF92400E)
+                                        color = MaterialTheme.colorScheme.error
                                     )
                                     Text(
                                         text = "Exibindo dados do cache local",
                                         fontSize = 11.sp,
-                                        color = Color(0xFF92400E)
+                                        color = MaterialTheme.colorScheme.error
                                     )
                                     Text(
                                         text = "Última sincronização: $lastSyncText",
                                         fontSize = 10.sp,
-                                        color = Color(0xFF92400E).copy(alpha = 0.8f)
+                                        color = MaterialTheme.colorScheme.error.copy(alpha = 0.8f)
                                     )
                                 }
                             }
@@ -482,7 +482,7 @@ fun InformacoesBancoScreen(
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp),
                             colors = androidx.compose.material3.CardDefaults.cardColors(
-                                containerColor = Color(0xFFF3F4F6)
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant
                             )
                         ) {
                             Column(modifier = Modifier.padding(12.dp)) {
@@ -538,7 +538,7 @@ fun InformacoesBancoScreen(
                     Text(
                         text = "💡 Dica: Arraste as colunas do cabeçalho para reordená-las",
                         fontSize = 11.sp,
-                        color = Color(0xFF6B7280),
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
 
@@ -621,7 +621,7 @@ fun InformacoesBancoScreen(
                                                 modifier = Modifier
                                                     .weight(1f)
                                                     .padding(vertical = 8.dp),
-                                                color = Color(0xFF6B7280),
+                                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                                 fontSize = 12.sp
                                             )
                                         }
@@ -649,7 +649,7 @@ fun InformacoesBancoScreen(
                                 if (usandoOffline) {
                                     item {
                                         Surface(
-                                            color = Color(0xFFF3F4F6),
+                                            color = MaterialTheme.colorScheme.surfaceVariant,
                                             shape = RoundedCornerShape(8.dp),
                                             modifier = Modifier
                                                 .fillMaxWidth()
@@ -663,7 +663,7 @@ fun InformacoesBancoScreen(
                                                 Text(
                                                     text = "ℹ️ Dados do cache sincronizado",
                                                     fontSize = 11.sp,
-                                                    color = Color(0xFF6B7280)
+                                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                                                 )
                                             }
                                         }
@@ -689,14 +689,14 @@ private fun TabelaCabecalho(
     
     Row(
         modifier = Modifier
-            .background(Color(0xFF2C6BFF))
+            .background(MaterialTheme.colorScheme.primary)
             .padding(vertical = 12.dp, horizontal = 8.dp),
         horizontalArrangement = Arrangement.Start
     ) {
         ordemColunas.forEachIndexed { index, coluna ->
             val estaSendoArrastada = colunaSendoArrastada == index
             val corFundo = if (estaSendoArrastada) {
-                Color(0xFF1E40AF)
+                MaterialTheme.colorScheme.primaryContainer
             } else {
                 Color.Transparent
             }
@@ -748,7 +748,7 @@ private fun TabelaCabecalho(
                 CelulaTabela(
                     coluna.label,
                     coluna.largura,
-                    Color.White,
+                    MaterialTheme.colorScheme.onPrimary,
                     FontWeight.Bold
                 )
             }
@@ -760,9 +760,9 @@ private fun TabelaCabecalho(
 private fun LinhaTabela(registro: ProdutoRecord, ordemColunas: List<ColunaTabela>) {
     val estaConcluido = estaConcluido(registro.status, registro.qtCont)
     val corFundo = if (estaConcluido) {
-        Color(0xFFE7F8ED).copy(alpha = 0.5f)
+        MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f)
     } else {
-        Color(0xFFFEE2E2).copy(alpha = 0.5f)
+        MaterialTheme.colorScheme.error.copy(alpha = 0.1f)
     }
     
     Column {
@@ -777,49 +777,49 @@ private fun LinhaTabela(registro: ProdutoRecord, ordemColunas: List<ColunaTabela
                     ColunaTabela.PRODUT -> CelulaTabela(
                         registro.produt ?: "-",
                         coluna.largura,
-                        Color(0xFF111827),
+                        MaterialTheme.colorScheme.onSurface,
                         FontWeight.Normal
                     )
                     ColunaTabela.CODPROD -> CelulaTabela(
                         registro.codProd?.toString() ?: "-",
                         coluna.largura,
-                        Color(0xFF111827),
+                        MaterialTheme.colorScheme.onSurface,
                         FontWeight.Normal
                     )
                     ColunaTabela.CODFUNC -> CelulaTabela(
                         registro.codFunc?.toString() ?: "-",
                         coluna.largura,
-                        Color(0xFF111827),
+                        MaterialTheme.colorScheme.onSurface,
                         FontWeight.Normal
                     )
                     ColunaTabela.CODFILIAL -> CelulaTabela(
                         registro.codFilial?.toString() ?: "-",
                         coluna.largura,
-                        Color(0xFF111827),
+                        MaterialTheme.colorScheme.onSurface,
                         FontWeight.Normal
                     )
                     ColunaTabela.NUMINVENT -> CelulaTabela(
                         registro.numInvent?.toString() ?: "-",
                         coluna.largura,
-                        Color(0xFF111827),
+                        MaterialTheme.colorScheme.onSurface,
                         FontWeight.Normal
                     )
                     ColunaTabela.QTPROD -> CelulaTabela(
                         registro.qtProd?.toString() ?: "-",
                         coluna.largura,
-                        Color(0xFF111827),
+                        MaterialTheme.colorScheme.onSurface,
                         FontWeight.Normal
                     )
                     ColunaTabela.QTCONT -> CelulaTabela(
                         registro.qtCont?.toString() ?: "-",
                         coluna.largura,
-                        Color(0xFF111827),
+                        MaterialTheme.colorScheme.onSurface,
                         FontWeight.Normal
                     )
                     ColunaTabela.STATUS -> CelulaTabela(
                         if (estaConcluido) "Concluído" else "Pendente",
                         coluna.largura,
-                        if (estaConcluido) Color(0xFF16A34A) else Color(0xFFDC2626),
+                        if (estaConcluido) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.error,
                         FontWeight.SemiBold
                     )
                 }
@@ -830,7 +830,7 @@ private fun LinhaTabela(registro: ProdutoRecord, ordemColunas: List<ColunaTabela
         Spacer(
             modifier = Modifier
                 .height(1.dp)
-                .background(Color(0xFFE5E7EB))
+                .background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f))
         )
     }
 }

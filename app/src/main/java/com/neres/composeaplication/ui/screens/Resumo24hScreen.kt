@@ -76,7 +76,7 @@ fun Resumo24hScreen(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(Color(0xFFF9FAFB))
+                .background(MaterialTheme.colorScheme.background)
                 .padding(16.dp)
         ) {
             when {
@@ -92,11 +92,11 @@ fun Resumo24hScreen(
                 mensagemErro != null -> {
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF5F5))
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer)
                     ) {
                         Text(
                             text = mensagemErro ?: "",
-                            color = Color(0xFFDC2626),
+                            color = MaterialTheme.colorScheme.error,
                             fontWeight = FontWeight.SemiBold,
                             modifier = Modifier.padding(16.dp)
                         )
@@ -110,11 +110,11 @@ fun Resumo24hScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 12.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFF7ED))
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
                         ) {
                             Text(
                                 text = "📱 Modo Offline - Mostrando dados locais",
-                                color = Color(0xFF92400E),
+                                color = MaterialTheme.colorScheme.onTertiaryContainer,
                                 fontWeight = FontWeight.Medium,
                                 modifier = Modifier.padding(12.dp)
                             )
@@ -129,13 +129,13 @@ fun Resumo24hScreen(
                         StatCard(
                             title = "Total Enviado",
                             value = registros.size.toString(),
-                            color = Color(0xFFE7F8ED),
+                            color = MaterialTheme.colorScheme.secondaryContainer,
                             modifier = Modifier.weight(1f)
                         )
                         StatCard(
                             title = "Últimas 24h",
                             value = registros.size.toString(),
-                            color = Color(0xFFF0F9FF),
+                            color = MaterialTheme.colorScheme.primaryContainer,
                             modifier = Modifier.weight(1f)
                         )
                     }
@@ -146,18 +146,18 @@ fun Resumo24hScreen(
                         text = "Registros Enviados",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF111827),
+                        color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.padding(bottom = 12.dp)
                     )
 
                     if (registros.isEmpty()) {
                         Card(
                             modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = Color.White)
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
                         ) {
                             Text(
                                 text = "Nenhum registro encontrado nas últimas 24 horas.",
-                                color = Color(0xFF6B7280),
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                 modifier = Modifier.padding(16.dp)
                             )
                         }
@@ -196,12 +196,12 @@ fun StatCard(
                 text = value,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF111827)
+                color = MaterialTheme.colorScheme.onSurface
             )
             Text(
                 text = title,
                 fontSize = 12.sp,
-                color = Color(0xFF6B7280)
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )
         }
     }
@@ -211,7 +211,7 @@ fun StatCard(
 fun RegistroResumoCard(registro: ProdutoRecord) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         shape = RoundedCornerShape(12.dp)
     ) {
@@ -225,7 +225,7 @@ fun RegistroResumoCard(registro: ProdutoRecord) {
                     text = "CODBARID: ${registro.codBarId ?: "-"}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF111827)
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
 
@@ -237,7 +237,7 @@ fun RegistroResumoCard(registro: ProdutoRecord) {
                     text = nomeProduto,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = Color(0xFF2C6BFF),
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(bottom = 4.dp)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
@@ -267,15 +267,14 @@ fun InfoLinhaResumo(titulo: String, valor: String) {
         Text(
             text = titulo,
             fontSize = 14.sp,
-            color = Color(0xFF6B7280),
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
             fontWeight = FontWeight.Medium
         )
         Text(
             text = valor,
             fontSize = 14.sp,
-            color = Color(0xFF111827),
+            color = MaterialTheme.colorScheme.onSurface,
             fontWeight = FontWeight.SemiBold
         )
     }
 }
-

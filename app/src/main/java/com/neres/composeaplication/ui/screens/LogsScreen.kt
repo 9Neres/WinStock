@@ -60,7 +60,7 @@ fun LogsScreen(onBack: () -> Unit) {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(Color(0xFFF9FAFB))
+                .background(MaterialTheme.colorScheme.background)
                 .padding(16.dp)
         ) {
             // Filtros por tipo
@@ -84,7 +84,7 @@ fun LogsScreen(onBack: () -> Unit) {
                         ) 
                     },
                     colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = Color(0xFFDC2626).copy(alpha = 0.2f)
+                        selectedContainerColor = MaterialTheme.colorScheme.errorContainer
                     ),
                     modifier = Modifier.weight(1f)
                 )
@@ -98,7 +98,7 @@ fun LogsScreen(onBack: () -> Unit) {
                         ) 
                     },
                     colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = Color(0xFFF59E0B).copy(alpha = 0.2f)
+                        selectedContainerColor = MaterialTheme.colorScheme.tertiaryContainer
                     ),
                     modifier = Modifier.weight(1f)
                 )
@@ -124,7 +124,7 @@ fun LogsScreen(onBack: () -> Unit) {
                             else 
                                 "Nenhum log registrado",
                             fontSize = 14.sp,
-                            color = Color(0xFF9CA3AF)
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
                         )
                     }
                 }
@@ -153,7 +153,7 @@ fun LogsScreen(onBack: () -> Unit) {
                             mostrarDialogoLimpar = false
                         },
                         colors = ButtonDefaults.textButtonColors(
-                            contentColor = Color(0xFFDC2626)
+                            contentColor = MaterialTheme.colorScheme.error
                         )
                     ) {
                         Text("Limpar", fontWeight = FontWeight.Bold)
@@ -173,27 +173,27 @@ fun LogsScreen(onBack: () -> Unit) {
 private fun LogCard(log: LogItem) {
     val (corFundo, corBorda, corTexto, icone) = when (log.tipo) {
         TipoLog.ERRO -> Quadrupla(
-            Color(0xFFFEE2E2),
-            Color(0xFFDC2626),
-            Color(0xFF991B1B),
+            MaterialTheme.colorScheme.errorContainer,
+            MaterialTheme.colorScheme.error,
+            MaterialTheme.colorScheme.onErrorContainer,
             "❌"
         )
         TipoLog.AVISO -> Quadrupla(
-            Color(0xFFFEF3C7),
-            Color(0xFFF59E0B),
-            Color(0xFF92400E),
+            MaterialTheme.colorScheme.tertiaryContainer,
+            MaterialTheme.colorScheme.tertiary,
+            MaterialTheme.colorScheme.onTertiaryContainer,
             "⚠️"
         )
         TipoLog.INFO -> Quadrupla(
-            Color(0xFFE0E7FF),
-            Color(0xFF6366F1),
-            Color(0xFF3730A3),
+            MaterialTheme.colorScheme.primaryContainer,
+            MaterialTheme.colorScheme.primary,
+            MaterialTheme.colorScheme.onPrimaryContainer,
             "ℹ️"
         )
         TipoLog.SUCESSO -> Quadrupla(
-            Color(0xFFE7F8ED),
-            Color(0xFF16A34A),
-            Color(0xFF15803D),
+            MaterialTheme.colorScheme.secondaryContainer,
+            MaterialTheme.colorScheme.secondary,
+            MaterialTheme.colorScheme.onSecondaryContainer,
             "✅"
         )
     }
@@ -226,7 +226,7 @@ private fun LogCard(log: LogItem) {
                 Text(
                     text = LogsRepository.formatTimestamp(log.timestamp),
                     fontSize = 10.sp,
-                    color = Color(0xFF6B7280),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                     fontFamily = FontFamily.Monospace
                 )
             }
@@ -237,7 +237,7 @@ private fun LogCard(log: LogItem) {
             Text(
                 text = log.mensagem,
                 fontSize = 13.sp,
-                color = Color(0xFF111827),
+                color = MaterialTheme.colorScheme.onSurface,
                 lineHeight = 18.sp
             )
             
@@ -245,13 +245,13 @@ private fun LogCard(log: LogItem) {
             log.detalhes?.let { detalhes ->
                 Spacer(modifier = Modifier.height(8.dp))
                 Surface(
-                    color = Color(0xFF000000).copy(alpha = 0.05f),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f),
                     shape = RoundedCornerShape(4.dp)
                 ) {
                     Text(
                         text = detalhes,
                         fontSize = 11.sp,
-                        color = Color(0xFF6B7280),
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                         fontFamily = FontFamily.Monospace,
                         modifier = Modifier.padding(8.dp),
                         lineHeight = 16.sp

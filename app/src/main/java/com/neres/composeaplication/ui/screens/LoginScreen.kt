@@ -56,17 +56,12 @@ fun LoginScreen(onLogin: () -> Unit) {
         modoOffline = !isWifiConnected(context)
     }
 
-    Surface(modifier = Modifier.fillMaxSize(), color = Color(0xFFF9FAFB)) {
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
         Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(16.dp)) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("Irly - Inventário", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Color(
-                    0xFF2C6BFF
-                ))
+                Text("WinStock", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)
 
-                Text("Login", fontSize = 15.sp, fontWeight = FontWeight.Light, color = Color(
-                    0xFF7A7B80
-                )
-                )
+                Text("Login", fontSize = 15.sp, fontWeight = FontWeight.Light, color = MaterialTheme.colorScheme.onBackground)
 
                 Spacer(modifier = Modifier.height(24.dp))
 
@@ -90,8 +85,8 @@ fun LoginScreen(onLogin: () -> Unit) {
                             onClick = { mostrarMenuUsuarios = true },
                             modifier = Modifier.fillMaxWidth(),
                             colors = ButtonDefaults.outlinedButtonColors(
-                                containerColor = Color.White,
-                                contentColor = Color(0xFF2C6BFF)
+                                containerColor = MaterialTheme.colorScheme.surface,
+                                contentColor = MaterialTheme.colorScheme.primary
                             ),
                             shape = RoundedCornerShape(8.dp)
                         ) {
@@ -102,10 +97,10 @@ fun LoginScreen(onLogin: () -> Unit) {
                             ) {
                                 Text(
                                     text = if (nome.isNotBlank()) nome else "Selecione o usuário",
-                                    color = if (nome.isNotBlank()) Color(0xFF111827) else Color(0xFF9CA3AF),
+                                    color = if (nome.isNotBlank()) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                                     fontWeight = if (nome.isNotBlank()) FontWeight.SemiBold else FontWeight.Normal
                                 )
-                                Text("▼", fontSize = 12.sp, color = Color(0xFF6B7280))
+                                Text("▼", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
                             }
                         }
                         
@@ -130,7 +125,7 @@ fun LoginScreen(onLogin: () -> Unit) {
                                                 text = user,
                                                 fontSize = 14.sp,
                                                 fontWeight = if (nome == user) FontWeight.Bold else FontWeight.Normal,
-                                                color = if (nome == user) Color(0xFF2C6BFF) else Color(0xFF111827)
+                                                color = if (nome == user) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
                                             )
                                         }
                                     },
@@ -254,19 +249,25 @@ fun LoginScreen(onLogin: () -> Unit) {
                                         erro = "Usuário ou senha inválidos."
                                         LogsRepository.aviso("Login", "Tentativa de login falhou: $nome", "Credenciais inválidas")
                                     }
-                                }
+                                 }
                             }
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2C6BFF))
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                 ) {
-                    Text("Entrar", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text("Entrar", color = MaterialTheme.colorScheme.onPrimary, fontWeight = FontWeight.Bold)
                 }
 
                 erro?.let {
-                    Text(it, color = Color.Red, modifier = Modifier.padding(top = 8.dp))
+                    Text(it, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(top = 8.dp))
                 }
+                Spacer(modifier = Modifier.height(20.dp)) // Add some space before the copyright
+                Text(
+                    text = "© Desenvolvido por Neres",
+                    fontSize = 10.sp,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f) // Use a subtle color
+                )
             }
         }
     }
